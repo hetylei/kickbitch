@@ -1,0 +1,66 @@
+package #packageName.eho;
+
+import net.yr365.pagef.NoTx;
+import net.yr365.pagef.FBaseHO;
+import net.yr365.pagef.FResult;
+import net.yr365.pagef.FPageCounter;
+import com.yxsoft.pub.YXDaoFactory;
+import #packageName.vo.*;
+import #packageName.dao.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+
+/**
+ * Created by EHOCreator  (ehoList.jt)
+ */
+public class #EntityNameListEHO extends FBaseHO {
+	private #DaoClass dao;
+
+	/**
+	 * 方法运行之前执行
+	 */
+	public void callAfterCreateEHO()
+	{
+		dao= YXDaoFactory.get#DaoClass ();
+	}
+
+    @NoTx
+    public void handleEventDefault() {
+        handleEventFind();        
+    }
+
+    @NoTx
+    public void handleEventFind() {
+        _po.inputVar();
+        FPageCounter pc = _po.getPageCounter ("pagescroll");
+        pc.clr ();
+        HashMap<String, Object> param = new HashMap<String, Object>();
+        //获取记录数
+        int rowCount = dao.get#EntityNameCountByParam(param);
+        pc.setTotalLines (rowCount);
+        //查询条件
+        _po.setObj ("param",param);
+        //翻页
+        scroll("pagescroll");
+    }
+
+    public void scroll (String name) {
+		FPageCounter pc = _po.getPageCounter (name);
+
+		Map<String, Object> param = (Map<String, Object>)_po.getObj ("param");
+
+		List<#EntityName> result = dao.get#EntityNameListByParam(param, pc.getLineMin(),pc.getLinesPerPage());
+
+		_po.setSet ("#EntityNameList",result);
+	}
+
+	public void handleEventDelete() {
+        #primarykeys
+        dao.delete#EntityNameByPrimaryKey(#primaryKeysParamCall);
+
+        _po.redir("#EntityNameList.shtml");
+    }
+
+}

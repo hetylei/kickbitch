@@ -1,0 +1,10 @@
+主要API文件：UUwiseHelper.dll
+一般仅需要此文件即可
+附带的C.lib和cdef.h头文件是方便C/C++调用的
+其它语言仅需要复制UUWiseHelper.dll文件放到自己的软件中即可，具体调用方式请参考DEMO
+
+UUWiseHelper-X64.dll  是64位的
+
+开发流程：http://www.uuwise.com/process.html
+WIKI：http://wiki.uuwise.com
+技术QQ：87280085

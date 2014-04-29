@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/doc/httpcomponents-client-4.2.1-bin/httpcomponents-client-4.2.1/Httpcomponents-client-4.2.1.iml" filepath="$PROJECT_DIR$/doc/httpcomponents-client-4.2.1-bin/httpcomponents-client-4.2.1/Httpcomponents-client-4.2.1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doc/httpunit-1.7/Httpunit-1.7.iml" filepath="$PROJECT_DIR$/doc/httpunit-1.7/Httpunit-1.7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Kickbitch.iml" filepath="$PROJECT_DIR$/Kickbitch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/doc/httpunit-1.7/doc/tutorial/Tutorial.iml" filepath="$PROJECT_DIR$/doc/httpunit-1.7/doc/tutorial/Tutorial.iml" />
+    </modules>
+  </component>
+</project>
+

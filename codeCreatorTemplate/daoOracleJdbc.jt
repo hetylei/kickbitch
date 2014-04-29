@@ -1,0 +1,198 @@
+package #packageName.dao;
+
+import #packageName.vo.*;
+
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.nutz.dao.Dao;
+import org.nutz.dao.Sqls;
+import org.nutz.dao.sql.Sql;
+
+/**
+ * Created by DaoCreator (daoJdbc.jt)
+ */
+public class #DaoNameJdbcDao implements #DaoNameDao{
+    private static Logger logger = Logger.getLogger(#DaoNameJdbcDao.class);
+    private Dao dao;
+
+    public #DaoNameJdbcDao(Dao dao){
+        logger.debug("Dao :"+this.getClass().getName());
+        this.dao = dao;
+    }
+
+    //#appendbegin
+    //==============#TableName==============
+    String #EntityName_QUERY_SQL = "select * from #TableName t ";
+
+    private String create#EntityNameFilter(Map<String, Object> param) {
+        //to add filter,modify var filter
+        String filter = " where 1=1 ";
+#filterField
+        return filter;
+    }
+
+    private String create#EntityNameOrderBy(String orderBy) {
+        if (orderBy != null && !orderBy.equals(""))
+            return " order by " + orderBy;
+        else return "";
+    }
+
+    public #EntityName insert#EntityName(#EntityName vo) {
+        return dao.insert(vo);
+    }
+
+    public int update#EntityName(#EntityName vo) {
+        return dao.update(vo);
+    }
+
+    public int update#EntityNameIgnoreNull(#EntityName vo) {
+        return dao.update(vo);
+    }
+
+    public int delete#EntityName(#EntityName vo) {
+        return dao.delete(vo);
+    }
+
+    public int delete#EntityNameByPrimaryKey(#primaryKeyParamList) {
+        return dao.delete(#EntityName.class, sn);
+    }
+
+    public int delete#EntityNameByParam(Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i<param.length; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return delete#EntityNameByParam(map);
+    }
+
+    public int delete#EntityNameByParam(Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        String filter = create#EntityNameFilter(param);
+        //don't delete when no filter
+        if (!filter.trim().toLowerCase().equals("where 1=1")) {
+            String sql = "delete from #TableName t " + filter;
+            Sql s = Sqls.create(sql);
+            s.params().putAll(param);
+            dao.execute(s);
+            return s.getUpdateCount();
+        }
+        return 0;
+    }
+
+    public #EntityName get#EntityNameByPrimaryKey(#primaryKeyParamList) {
+        String sql= #EntityName_QUERY_SQL + " where #primaryKeyFilterList";
+        Sql s = Sqls.create(sql);
+        //todo:
+        s.params().set("sn", sn);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(#EntityName.class));
+        dao.execute(s);
+        return s.getObject(#EntityName.class);
+    }
+
+    public int get#EntityNameCountByPrimaryKey(#primaryKeyParamList) {
+        String sql="select count(#primaryKey1) from #TableName t where #primaryKeyFilterList ";
+        Sql s = Sqls.create(sql);
+        //todo:
+        s.params().set("sn", sn);
+        s.setCallback(Sqls.callback.integer());
+        dao.execute(s);
+        return s.getInt();
+    }
+
+    public int get#EntityNameCountByParam(Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i<param.length; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return get#EntityNameCountByParam(map);
+    }
+
+    public int get#EntityNameCountByParam(Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        //to add fileter modify create#EntityNameFilter
+        String filter = create#EntityNameFilter(param);
+        String sql = "select count(#primaryKey1) from #TableName t " + filter;
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.integer());
+        dao.execute(s);
+        return s.getInt();
+    }
+
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i < param.length ; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return get#EntityNameListByParam(orderBy, map);
+    }
+
+    public List<#EntityName> get#EntityNameListByParam(int page, int count, String orderBy, Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i < param.length ; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return get#EntityNameListByParam(orderBy, map, page, count);
+    }
+
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        //to add filter modify create#EntityNameFilter
+        String filter = create#EntityNameFilter(param);
+        String sql = "select * from (" + #EntityName_QUERY_SQL + filter + ") dataall " + create#EntityNameOrderBy(orderBy);
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(#EntityName.class));
+        dao.execute(s);
+        return s.getList(#EntityName.class);
+    }
+
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Map<String, Object> param, int page, int count) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        param.put("row0", (page - 1) * count);
+        param.put("row1", count * page);
+
+        //to add filter modify create#EntityNameFilter
+        String filter = create#EntityNameFilter(param);
+        String sql = "select * from ( select t.*, rownum rownum_ from (select * from (" +
+                        #EntityName_QUERY_SQL + filter +
+                        ") dataall " + create#EntityNameOrderBy(orderBy) + ") t where rownum <= @row1) where rownum_ > @row0";
+
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(#EntityName.class));
+        dao.execute(s);
+        return s.getList(#EntityName.class);
+
+
+    }
+
+    public List<#EntityName> getAll#EntityNameList(String orderBy){
+	    String sql = #EntityName_QUERY_SQL;
+		Sql s = Sqls.create("select * from (" + sql + ") dataall " + create#EntityNameOrderBy(orderBy));
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(#EntityName.class));
+        dao.execute(s);
+        return s.getList(#EntityName.class);
+    }
+    //==============end of #TableName==============
+    //#appendend
+}

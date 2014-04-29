@@ -1,0 +1,86 @@
+package #packageName.eho;
+
+import net.yr365.pagef.NoTx;
+import net.yr365.pagef.FResult;
+import net.yr365.pagef.FBaseHO;
+import net.yr365.key.KeyCreator;
+import com.yxsoft.pub.YXDaoFactory;
+import #packageName.vo.*;
+import #packageName.dao.*;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ * Created by EHOCreator (ehoEdit.jt)
+ */
+public class #EntityNameEditEHO extends FBaseHO {
+	private #DaoClass dao;
+
+	/**
+	 * 方法运行之前执行
+	 */
+	public void callAfterCreateEHO()
+	{
+		dao= YXDaoFactory.get#DaoClass ();
+	}
+
+    @NoTx
+	public void handleEventDefault()
+    {
+        handleEventNew();
+	}
+
+    @NoTx
+    public void handleEventNew()
+	{
+		#EntityName vo = new #EntityName();
+
+        _po.setObj("#EntityNameObj", vo);
+        _po.setVar("op", "New");
+	}
+
+    @NoTx
+    public void handleEventModify()
+	{
+		//get primarykeys
+        #primarykeys
+        #EntityName vo = dao.get#EntityNameByPrimaryKey(#primaryKeysParamCall);
+        _po.setObj("#EntityNameObj", vo);
+        _po.setVar("op", "Modify");
+
+	}
+
+	public void handleEventSaveNew()
+	{
+		_po.inputObj ();
+		#EntityName vo = (#EntityName)_po.getObj ("#EntityNameObj");
+#setPk
+		dao.insert#EntityName(vo);
+
+		_po.redir("#EntityNameList.shtml");
+	}
+
+	public void handleEventSaveModify()
+	{
+		_po.inputObj ();
+		#EntityName vo = (#EntityName)_po.getObj ("#EntityNameObj");
+		dao.update#EntityName(vo);
+
+		_po.redir("#EntityNameList.shtml");
+	}
+
+    @NoTx
+	public void handleEventView()
+	{
+	    //get primarykeys
+        #primarykeys
+
+        #EntityName vo = dao.get#EntityNameByPrimaryKey(#primaryKeysParamCall);
+        _po.setObj("#EntityNameObj", vo);
+        _po.setVar("op", "View");
+    }
+}

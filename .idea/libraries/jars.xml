@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="jars">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/junit-3.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/nekohtml-0.9.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/xercesImpl-2.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/js-1.6R5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/jtidy-4aug2000r7-dev.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/xmlParserAPIs-2.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/servlet-api-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/mail-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/httpunit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit-1.7/jars/activation-1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

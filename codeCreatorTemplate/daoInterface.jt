@@ -1,0 +1,36 @@
+package #packageName.dao;
+
+import #packageName.vo.*;
+
+import java.util.Map;
+import java.util.List;
+
+/**
+ * Created by DaoCreator (daoInterface.jt)
+ */
+public interface #DaoNameDao {
+//#appendbegin
+    //==============#TableName==============
+    public #EntityName insert#EntityName(#EntityName vo);
+    public int update#EntityName(#EntityName vo);
+    public int update#EntityNameIgnoreNull(#EntityName vo);
+
+    public int delete#EntityName(#EntityName vo);
+    public int delete#EntityNameByPrimaryKey(#primaryKeyParamList);
+    public int delete#EntityNameByParam(Object... param);
+    public int delete#EntityNameByParam(Map<String, Object> param);
+
+    public #EntityName get#EntityNameByPrimaryKey(#primaryKeyParamList);
+    
+    public int get#EntityNameCountByPrimaryKey(#primaryKeyParamList);
+    public int get#EntityNameCountByParam(Object... param);
+    public int get#EntityNameCountByParam(Map<String, Object> param);
+
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Object... param);
+    public List<#EntityName> get#EntityNameListByParam(int page, int count, String orderBy, Object... param);
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Map<String, Object> param);
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Map<String, Object> param, int page, int count);
+    public List<#EntityName> getAll#EntityNameList(String orderBy);
+    //==============end of #TableName==============	
+//#appendend   
+}

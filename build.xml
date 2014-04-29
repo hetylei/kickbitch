@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="gb2312"?>
+<!--
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - smsweb 项目构建文件
+ - by chenlei
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - modify log
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ -->
+
+<project name="hybi project"   default="source" basedir=".">
+
+
+    <!-- build.properties 定义了本地化的路径信息等 -->
+    <property file="./build.properties"/>
+
+    <property name="hybi.version" value="0.1"/>
+
+
+    <property name="src.dir" value="src"/>
+    <property name="web.dir" value="web"/>
+
+    <property name="config.dir" value="conf"/>
+    <property name="lib.dir" value="lib"/>
+
+    <property name="classes.dir" value="${source.deploy}/WEB-INF/classes"/>
+
+
+    <path id="base.classpath">
+        <pathelement location="${classes.dir}"/>
+
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+
+    <target name="init">
+        <mkdir dir="${classes.dir}"/>
+    </target>
+
+    <target name="clean"
+        description="Removes all the generated files or directories">
+        <delete dir="${classes.dir}"/>
+        <delete dir="${source.deploy}"/>
+    </target>
+
+    <target name="compile" depends="init" description="compile all java code">
+		<javac
+            destdir="${source.deploy}/WEB-INF/classes"
+            debug="${opt.javac.debug}"
+            optimize="${opt.javac.optimize}"
+            memoryMaximumSize="500m"
+            fork="yes"
+            excludes="**/.svn/**"
+            target="1.6"
+                >
+            
+            <classpath refid="base.classpath"/>
+
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+
+    <target name="codeCreator" depends="init" description="通过此命令编译后才能正常使用CodeCreator">
+        <mkdir dir="classes"/>
+		<javac
+            destdir="classes"
+            debug="${opt.javac.debug}"
+            optimize="${opt.javac.optimize}"
+            memoryMaximumSize="500m"
+            fork="yes"
+            excludes="**/.svn/**"
+            target="1.6"
+                >
+
+            <classpath refid="base.classpath"/>
+
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+
+
+    <target name="codeCreator2" depends="init" description="通过此命令编译后才能正常使用CodeCreator">
+        <mkdir dir="classes"/>
+        <javac
+                destdir="D:/vdi/u/class"
+                debug="${opt.javac.debug}"
+                optimize="${opt.javac.optimize}"
+                memoryMaximumSize="500m"
+                fork="yes"
+                excludes="**/.svn/**"
+                target="1.6"
+                >
+
+            <classpath refid="base.classpath"/>
+
+            <src path="${src.dir}"/>
+        </javac>
+    </target>
+    
+   
+	
+    <target name="cfg"
+            description="复制配置文件和freemarker模版文件"
+            depends="init">
+        <copy todir="${source.deploy}/WEB-INF/">
+            <fileset dir="${config.dir}">
+            	<include name="**/*.*"/>
+           	</fileset>
+        </copy>
+    </target>
+
+    <target name="html"
+            description="发布web html源文件到resin/webapp"
+            depends="cfg">
+        <copy todir="${source.deploy}" verbose="no">
+            <fileset dir="${web.dir}">
+            	<include name="**/*.*"/>
+                <exclude name="__doc/**/*.*"/>
+                <exclude name="__etc/**/*.*"/>
+                <exclude name="__*.*"/>
+            </fileset>
+        </copy>
+
+    </target>
+
+    <target name="lib" description="发布lib到resin/webapp" >
+
+        <copy todir="${source.deploy}/WEB-INF/lib">
+            <fileset dir="${lib.dir}">
+            	<include name="*.jar"/>
+           </fileset>
+        </copy>
+
+    </target>
+
+
+	
+    <target name="source"
+            description="发布.class和web源文件到resin/webapp"
+            depends="compile,cfg,html">
+		<!--
+		<echo message="注意！这个是使用resin开发测试用的，不是生产用的！"/>
+		-->
+
+        <copy todir="${source.deploy}/WEB-INF/lib">
+            <fileset dir="${lib.dir}">
+            	<include name="*.jar"/>
+           </fileset>
+        </copy>
+    </target>
+
+
+    <target name="source/freemarker"
+            description="deploy class and freemarker file"
+            depends="compile">
+
+		<echo message="warning, this operte can not update file except shtml in web"/>
+        
+        <copy todir="${source.deploy}/WEB-INF/classes" verbose="yes">
+            <fileset dir="${src.dir}">
+            </fileset>
+        </copy>
+
+    </target>
+
+
+</project>

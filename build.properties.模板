@@ -1,0 +1,8 @@
+# Properties defined in this file could be customized
+
+#options for java compiler
+
+opt.javac.debug=on
+opt.javac.optimize=off
+
+source.deploy=C:/resinForBI/webapps/ROOT

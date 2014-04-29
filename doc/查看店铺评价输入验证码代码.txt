@@ -1,0 +1,1 @@
+<form class="checkcode"><label for="coder-248">要继续访问, 请输入验证码:</label><br><img title="点击图片刷新验证码" class="code-img" src="http://regcheckcode.taobao.com/auction/checkcode?sessionID=1f86686beca61b9743954f88552bd9da&amp;cache=1391338230464"><input id="coder-248" class="code-input"><button type="submit" class="code-submit">确认</button></form>

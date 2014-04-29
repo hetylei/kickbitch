@@ -1,0 +1,25 @@
+<component name="libraryTable">
+  <library name="doc">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/doc/IEDriverServer_x64_2.25.3.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/chromedriver_win_23.0.1240.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/junit-3.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/selenium-java-2.25.0.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpunit.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/jtidy-4aug2000r7-dev.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpcomponents-asyncclient-4.0-beta2-bin.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/jwebunit-3.0-release.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/xmlParserAPIs-2.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpcomponents-client-4.2.1-bin.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/selenium-server-standalone-2.25.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/js-1.6R5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/httpcomponents-core-4.2.1-bin.zip!/" />
+      <root url="jar://$PROJECT_DIR$/doc/mail-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/nekohtml-0.9.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/doc/selenium-java-2.25.0-srcs.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

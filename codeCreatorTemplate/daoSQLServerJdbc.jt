@@ -1,0 +1,237 @@
+package #packageName.dao;
+
+import #packageName.vo.*;
+
+import java.util.Map;
+import java.util.HashMap;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.nutz.dao.Dao;
+import org.nutz.dao.Sqls;
+import org.nutz.dao.sql.Sql;
+
+/**
+ * Created by DaoCreator (daoJdbc.jt)
+ */
+public class #DaoNameJdbcDao implements #DaoNameDao{
+    private static Logger logger = Logger.getLogger(#DaoNameJdbcDao.class);
+    private Dao dao;
+
+    public #DaoNameJdbcDao(Dao dao){
+        logger.debug("Dao :"+this.getClass().getName());
+        this.dao = dao;
+    }
+
+    //#appendbegin
+    //==============#TableName==============
+    private String #EntityName_QUERY_SQL = "select * from #TableName t ";
+
+    private String create#EntityNameFilter(Map<String, Object> param) {
+        //to add filter,modify var filter
+        String filter = " where 1=1 ";
+#filterField
+        return filter;
+    }
+
+    private String create#EntityNameOrderBy(String orderBy) {
+        //必须有id主键否则报错
+        //格式化orderby 必须带 asc 或 desc
+        if (orderBy != null && !orderBy.trim().equals("")) {
+            String ob = "";
+            for (String s : orderBy.split(",")) {
+                if (!ob.equals("")) ob += ", ";
+                if (s.toLowerCase().trim().endsWith(" asc") || s.toLowerCase().trim().endsWith(" desc")) {
+                    ob += s;
+                } else {
+                    ob += s + " asc";
+                }
+            }
+            return " order by " + ob;
+        }
+        else return "order by id asc ";
+    }
+
+    private String create#EntityNameOrderByDesc(String orderBy) {
+        //反转 orderby
+        String ob =  create#EntityNameOrderBy(orderBy);
+        ob = ob.replaceAll(" asc", " OOXXasc");
+        ob = ob.replaceAll(" desc", " asc");
+        return ob.replaceAll(" OOXXasc", " desc");
+    }
+
+    public #EntityName insert#EntityName(#EntityName vo) {
+        return dao.insert(vo);
+    }
+
+    public int update#EntityName(#EntityName vo) {
+        return dao.update(vo);
+    }
+
+    public int update#EntityNameIgnoreNull(#EntityName vo) {
+        return dao.updateIgnoreNull(vo);
+    }
+
+    public int delete#EntityName(#EntityName vo) {
+        return dao.delete(vo);
+    }
+
+    public int delete#EntityNameByPrimaryKey(#primaryKeyParamList) {
+        return dao.delete(#EntityName.class, id);
+    }
+
+    public int delete#EntityNameByParam(Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i<param.length; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return delete#EntityNameByParam(map);
+    }
+
+    public int delete#EntityNameByParam(Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        String filter = create#EntityNameFilter(param);
+        //don't delete when no filter
+        if (!filter.trim().toLowerCase().equals("where 1=1")) {
+            String sql = "delete from #TableName t " + filter;
+            Sql s = Sqls.create(sql);
+            s.params().putAll(param);
+            dao.execute(s);
+            return s.getUpdateCount();
+        }
+        return 0;
+    }
+
+    public #EntityName get#EntityNameByPrimaryKey(#primaryKeyParamList) {
+        String sql= #EntityName_QUERY_SQL + " where #primaryKeyFilterList";
+        Sql s = Sqls.create(sql);
+        //todo:
+        s.params().set("id", id);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(#EntityName.class));
+        dao.execute(s);
+        return s.getObject(#EntityName.class);
+    }
+
+    public int get#EntityNameCountByPrimaryKey(#primaryKeyParamList) {
+        String sql="select count(#primaryKey1) from #TableName t where #primaryKeyFilterList ";
+        Sql s = Sqls.create(sql);
+        //todo:
+        s.params().set("id", id);
+        s.setCallback(Sqls.callback.integer());
+        dao.execute(s);
+        return s.getInt();
+    }
+
+    public int get#EntityNameCountByParam(Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i<param.length; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return get#EntityNameCountByParam(map);
+    }
+
+    public int get#EntityNameCountByParam(Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        //to add fileter modify create#EntityNameFilter
+        String filter = create#EntityNameFilter(param);
+        String sql = "select count(#primaryKey1) from #TableName t " + filter;
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.integer());
+        dao.execute(s);
+        return s.getInt();
+    }
+
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i < param.length ; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return get#EntityNameListByParam(orderBy, map);
+    }
+
+    public List<#EntityName> get#EntityNameListByParam(int page, int count, String orderBy, Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i < param.length ; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return get#EntityNameListByParam(orderBy, map, page, count);
+    }
+
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        //to add filter modify create#EntityNameFilter
+        String filter = create#EntityNameFilter(param);
+        String sql = "select * from (" + #EntityName_QUERY_SQL + filter + ") dataall " + create#EntityNameOrderBy(orderBy);
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(#EntityName.class));
+        dao.execute(s);
+        return s.getList(#EntityName.class);
+    }
+
+    public List<#EntityName> get#EntityNameListByParam(String orderBy, Map<String, Object> param, int page, int count) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        if (orderBy == null || orderBy.equals("")) orderBy = " id " ;
+        if (page<1) page =1;
+
+        //赋值总记录数
+        int recordCount = this.get#EntityNameCountByParam(param);
+        //赋值总页面数
+        int pageCount = (recordCount+count-1) / count;
+        if (page>pageCount) page = pageCount;
+        //申明“剩余记录”
+        int residualRecord = recordCount - (page-1)*count;
+
+        //to add filter modify create#EntityNameFilter
+        String filter = create#EntityNameFilter(param);
+        String sql;
+
+        //当第一页时，直接一次top语句
+        if (page==1 || pageCount <=1) {
+            sql = "select top "+count+" * from ("+#EntityName_QUERY_SQL + filter+") tt " + create#EntityNameOrderBy(orderBy);
+        } else if (page == pageCount) {
+            //当最后一页时，对剩余记录进行查询操作
+            sql= "select * from (select top " +residualRecord+" * from ("+
+                    #EntityName_QUERY_SQL + filter+") tt " + create#EntityNameOrderByDesc(orderBy) + ") ttt " +
+                create#EntityNameOrderBy(orderBy);
+        } else {
+            //否则，top两次翻转。首先,通过降序排列在整张表中筛选出所有剩余记录，然后在对这些记录进行翻转排序取出前@pageSize条记录。
+            sql= "select top "+count+" * from (select top "+residualRecord +" * from ("+
+                    #EntityName_QUERY_SQL + filter +") tt " + create#EntityNameOrderByDesc(orderBy) + ") ttt " +
+                    create#EntityNameOrderBy(orderBy);
+        }
+
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(#EntityName.class));
+        dao.execute(s);
+        return s.getList(#EntityName.class);
+    }
+
+    public List<#EntityName> getAll#EntityNameList(String orderBy){
+	    String sql = #EntityName_QUERY_SQL;
+		Sql s = Sqls.create("select * from (" + sql + ") dataall " + create#EntityNameOrderBy(orderBy));
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(#EntityName.class));
+        dao.execute(s);
+        return s.getList(#EntityName.class);
+    }
+    //==============end of #TableName==============
+    //#appendend
+}

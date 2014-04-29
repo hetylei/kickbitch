@@ -1,0 +1,44 @@
+[#macro 页面配置]
+	<setup
+	    eho="#eho"
+	    pageDebug="yes"
+        autoPageSid="yes"
+    />
+
+    <obj name="#EntityNameObj"/>
+
+    <var name="op"/>
+
+[/#macro]
+[#import "/fmcommon/prompt.shtml" as prompt/]
+[#import "/fmcommon/public.shtml" as public/]
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK">
+	<link rel="stylesheet" type="text/css" href="/bfmp/css/main.css">
+	<script type="text/javascript" language="JavaScript" src="/bfmp/css/public.js"></script>
+   
+</head>
+
+<body>
+${sys.实时通知}
+[@prompt.prompt content=sys.prompts/]
+<form name="mainForm" method="post" action="#EntityNameList.shtml">
+<INPUT TYPE="hidden" NAME="pagecmd" VALUE="">
+  <table border="0" cellpadding="10" cellspacing="0">
+    <tr align="right">
+      <td align="left" class="titlebar">查看</td>
+      <td width="277" align="right" class="titlebar"><input type="button" name="button" id="button" value="返回" onClick="javascript:history.go(-1);"></td>
+    </tr>
+    <tr valign=middle >
+      <td colspan="2" align="left" class="bottombar">
+        <table border="0" cellpadding="0" cellspacing="0">
+            #PropertyViews
+        </table>
+      </td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
