@@ -269,30 +269,12 @@ public class VPN91 implements VPN {
     }
 
     public void kill() {
-
-        try {
-            Process p = Runtime.getRuntime().exec("taskkill /IM 91vpn.exe");
-
-            //等待杀死进程
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-            }
-            logger.info("代理 - " + Config.pu.getValue("91vpn") + " 已经杀死进程");
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
-        /*
-        IntByReference lpdwProcessId=new IntByReference();
-        int pid = User32.INSTANCE.GetWindowThreadProcessId(main, lpdwProcessId);
-        try {
-            Runtime.getRuntime().exec("tskill.exe "+pid);
-            logger.info("代理 - " + Config.pu.getValue("91vpn") + " 已经杀死进程");
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }         */
+        WindowsDll.killProcessByExe("91vpn.exe");
+        logger.info("代理 - " + Config.pu.getValue("91vpn") + " 已经杀死进程");
     }
+
+
+
 
 
 }

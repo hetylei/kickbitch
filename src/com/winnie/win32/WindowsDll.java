@@ -6,7 +6,11 @@ import com.sun.jna.platform.win32.User32;
 import com.sun.jna.platform.win32.WinDef;
 import com.sun.jna.platform.win32.WinUser;
 import com.sun.jna.win32.W32APIOptions;
+import com.winnie.pub.Config;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 
 
@@ -49,21 +53,67 @@ public class WindowsDll {
         
     }
 
-    public static void main(String[] args) {
-        WinDef.HWND hwnd = CallUser32.INSTANCE.FindWindow(null , "91VPN网游加速器商业版 - 3.5.2");
-        if (hwnd != null) {
-            CallUser32.INSTANCE.EnumChildWindows(hwnd, new WinUser.WNDENUMPROC() {
-                @Override
-                public boolean callback(WinDef.HWND hwnd, Pointer pointer) {
-                    char[] lpClassName = new char[255];
-                    char[] lpWindowText = new char[255];
-                    CallUser32.INSTANCE.GetClassName(hwnd, lpClassName, 254);
-                    CallUser32.INSTANCE.GetWindowText(hwnd, lpWindowText, 254);
-                    System.out.println(new String(lpClassName).trim() + " - " + new String(lpWindowText).trim());
-                    return true;
+
+    /**
+     * 检查windows程序是否正在运行
+     * @param exe 程度可执行文件名 xxx.exe
+     * @return
+     */
+    public static int processIsRunByExe(String exe) {
+        String cmd = "tasklist /nh /FI \"IMAGENAME eq " + exe + "\"";
+        try {
+            Runtime runtime = Runtime.getRuntime();
+            Process process = runtime.exec(cmd);
+            BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line = null;
+            while((line=br.readLine()) != null){
+                if(line.toLowerCase().contains(exe.toLowerCase())){
+                    String[] lineArray = line.split(" ");
+                    //结果从左开始第一个数字就是PID
+                    for (String s:lineArray) {
+                        if (!s.equals("") && s.matches("\\d*")) {
+                            return Integer.parseInt(s);
+                        }
+                    }
+
+
                 }
-            }, null);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+    
+    public static void killProcessByExe(String exe) {
+        try {
+            Runtime.getRuntime().exec("taskkill /IM "+exe);
+
+            //等待杀死进程
+            int i = 0;
+            while (processIsRunByExe(exe) > -1) {
+                try {
+                    Thread.sleep(100);
+                    i++; 
+                    if (i>100) {
+                        i = 0;
+                        killProcessByExe(exe);
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
+
     }
+
+    public static void main(String[] args) {
+        WindowsDll.killProcessByExe("notepad.exe");
+
+    }
+
 }

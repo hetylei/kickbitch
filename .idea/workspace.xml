@@ -76,10 +76,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestartWhenSuccessTimesBigThan.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/RestartWhenSuccessTimesBigThan.java">
+      <file leaf-file-name="VPN91.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/winnie/vpn/VPN91.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="23" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.0">
+            <state line="271" column="26" selection-start="10895" selection-end="10895" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WindowsDll.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/winnie/win32/WindowsDll.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="99" column="49" selection-start="3337" selection-end="3337" vertical-scroll-proportion="0.6927374">
               <folding />
             </state>
           </provider>
@@ -88,16 +97,7 @@
       <file leaf-file-name="ClickBy.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/ClickBy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="28" selection-start="2116" selection-end="2377" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClickByXPath.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/ClickByXPath.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="58" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0">
+            <state line="68" column="77" selection-start="2531" selection-end="2531" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -112,10 +112,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestHttpClient.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TestHttpClient.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/com/winnie/tk/TestHttpClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="64" selection-start="4197" selection-end="4197" vertical-scroll-proportion="-0.37971014">
+            <state line="106" column="64" selection-start="4197" selection-end="4197" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -172,7 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/winnie/tk/task/dao/TBKJdbcDao.java" />
         <option value="$PROJECT_DIR$/状态.txt" />
         <option value="$PROJECT_DIR$/src/com/winnie/tk/task/plugin/GetShopRate.java" />
         <option value="$PROJECT_DIR$/src/com/winnie/tk/task/plugin/RestartWhenSuccessTimesBigThan.java" />
@@ -185,9 +184,10 @@
         <option value="$PROJECT_DIR$/src/com/winnie/pub/Config.java" />
         <option value="$PROJECT_DIR$/src/com/winnie/pub/utils/PropertyUtil.java" />
         <option value="$PROJECT_DIR$/build.xml" />
-        <option value="$PROJECT_DIR$/src/com/winnie/vpn/VPN91.java" />
         <option value="$PROJECT_DIR$/src/com/winnie/tk/task/plugin/ClickBy.java" />
         <option value="$PROJECT_DIR$/src/com/winnie/tk/task/plugin/ClickByXPath.java" />
+        <option value="$PROJECT_DIR$/src/com/winnie/vpn/VPN91.java" />
+        <option value="$PROJECT_DIR$/src/com/winnie/win32/WindowsDll.java" />
       </list>
     </option>
   </component>
@@ -228,7 +228,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -249,6 +248,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -570,9 +570,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -584,7 +584,7 @@
       <recent name="E:\workspace\kickbitch\conf\classes" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UUWiseDll">
+  <component name="RunManager" selected="Application.WindowsDll">
     <configuration default="false" name="VPNController" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -635,11 +635,10 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="true" type="ResinConfigurationType" factoryName="Local">
-      <option name="PORT" value="80" />
-      <deployment />
-      <server-settings />
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
+      <option name="PROGRAM_PARAMETERS" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -647,10 +646,11 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
-      <option name="PROGRAM_PARAMETERS" />
+    <configuration default="true" type="ResinConfigurationType" factoryName="Local">
+      <option name="PORT" value="80" />
+      <deployment />
+      <server-settings />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -671,24 +671,6 @@
       </method>
     </configuration>
     <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" adl_options="" air_descriptor_path="" air_program_params="" air_publisher_id="" air_root_dir_path="" air_run_mode="AppDescriptor" browser_family="FIREFOX" class_name="" debugger_sdk="Module SDK" html_or_swf_file_path="" launcher_type="OSDefault" main_class_name="" method_name="" module_name="" output_log_level="" package_name="" player_path="FlashPlayer.exe" port="0" run_mode="HtmlOrSwfFile" run_trusted="true" scope="Class" socket_policy_port="0" url_to_launch="http://">
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -722,6 +704,24 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -813,7 +813,13 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="Kickbitch" />
       <envs />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="" />
+        <option name="TRANSPORT" value="0" />
+        <option name="LOCAL" value="true" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Debug" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -900,13 +906,12 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928678" sideWeight="0.5171233" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23563218" sideWeight="0.23463687" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46746576" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13884674" sideWeight="0.6934931" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38869864" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -914,16 +919,17 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30650684" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22078907" sideWeight="0.1130137" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30650684" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22078907" sideWeight="0.61130136" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19650987" sideWeight="0.28253424" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32852808" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39984825" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19650987" sideWeight="0.7380137" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19650987" sideWeight="0.6934931" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44863012" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46746576" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1032,16 +1038,6 @@
         <state line="24" column="0" selection-start="581" selection-end="581" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/vpn/VPN91.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="35" selection-start="3799" selection-end="3799" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/win32/WindowsDll.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="27" selection-start="565" selection-end="573" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/winnie/pub/utils/PropertyUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="15" column="132" selection-start="450" selection-end="450" vertical-scroll-proportion="0.0" />
@@ -1057,6 +1053,46 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/RestartWhenSuccessTimesBigThan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="23" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/ClickByXPath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="58" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/vpn/VPNController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="84" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/ClickBy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="68" column="77" selection-start="2531" selection-end="2531" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/IframeBodySet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="26" selection-start="1414" selection-end="1414" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/com/winnie/tk/TestHttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="106" column="64" selection-start="4197" selection-end="4197" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/browser/BaseBrowser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="23" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/quartz/BBSJob.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="110" column="61" selection-start="3589" selection-end="3589" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/build.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -1067,58 +1103,16 @@
         <state line="83" column="29" selection-start="3333" selection-end="3333" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/vpn/VPNController.java">
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/vpn/VPN91.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="93" column="84" selection-start="2533" selection-end="2533" vertical-scroll-proportion="0.0">
+        <state line="271" column="26" selection-start="10895" selection-end="10895" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/quartz/BBSJob.java">
+    <entry file="file://$PROJECT_DIR$/src/com/winnie/win32/WindowsDll.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="61" selection-start="3589" selection-end="3589" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/RestartWhenSuccessTimesBigThan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="23" selection-start="1649" selection-end="1649" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/browser/BaseBrowser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="23" selection-start="1675" selection-end="1675" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/ClickBy.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="28" selection-start="2116" selection-end="2377" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/ClickByXPath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="58" selection-start="1839" selection-end="1839" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/winnie/tk/task/plugin/IframeBodySet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="26" selection-start="1414" selection-end="1414" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/com/winnie/tk/TestHttpClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="106" column="64" selection-start="4197" selection-end="4197" vertical-scroll-proportion="-0.37971014">
+        <state line="99" column="49" selection-start="3337" selection-end="3337" vertical-scroll-proportion="0.6927374">
           <folding />
         </state>
       </provider>
