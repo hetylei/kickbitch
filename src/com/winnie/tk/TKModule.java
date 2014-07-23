@@ -23,7 +23,7 @@ public class TKModule {
     @At("/")
     @Ok("fm:/tk/main.ftl")
     public Object index() {
-        return IocFactory.getTBKDao().getAllTaskList("id asc");
+        return IocFactory.getTBKDao().getAllTaskList("isuse desc");
     }
 
     @At("/tk/startall")

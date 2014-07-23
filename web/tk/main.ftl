@@ -28,7 +28,8 @@
             <td>${task.taskName}</td>
             <td>${task.taskTime}</td>
             <td>${task.isUse}/${task.isDelete}</td>
-            <td>[#if task.lastState??]<a href="#" title="${task.lastState}">[#if task.lastState?length>30]${task.lastState?substring(0,30)}[#else]${task.lastState}[/#if]</a>[/#if]</td>
+            <td>[#if task.lastState??]<a href="#" title="${task.lastState}">[#if task.lastState?length>30]<span
+                    style="color: red; ">${task.lastState?substring(0,30)}</span>[#else]${task.lastState}[/#if]</a>[/#if]</td>
             <td>[#if task.mainUrl??]<a href="${task.mainUrl}" title="${task.mainUrl}" target="_blank">open</a>[/#if]</td>
         </tr>
     [/#list]

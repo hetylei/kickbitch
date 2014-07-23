@@ -41,6 +41,7 @@ public class VPN91 implements VPN {
 
     public void initVPN() {
         connect = null;
+        int i = 0;
 
         logger.info("代理 - " + Config.pu.getValue("91vpn") + " 正在初始化...");
         //确保只有一个实例运行，杀死现有进程
@@ -54,7 +55,12 @@ public class VPN91 implements VPN {
             main = WindowsDll.CallUser32.INSTANCE.FindWindow(null , Config.pu.getValue("91vpn"));
             while (main == null) {
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(1000);
+                    i++;
+                    if (i>20) {
+                        initVPN();
+                        return;
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
@@ -96,6 +102,7 @@ public class VPN91 implements VPN {
             logger.info("无法找到代理运行 - " + Config.pu.getValue("91vpn"));
         }
 
+        i = 0;
         while (connect ==null) {
             //登录以后
             main = WindowsDll.CallUser32.INSTANCE.FindWindow(null , Config.pu.getValue("91vpn"));
@@ -127,7 +134,13 @@ public class VPN91 implements VPN {
                 }, null);
             }
             try {
-                Thread.sleep(100);
+                Thread.sleep(3000);
+                //防止登录出错卡住
+                i++;
+                if (i>20) {
+                    initVPN();
+                    return;
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }

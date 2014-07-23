@@ -215,6 +215,7 @@ public class BaseBrowser implements Browser {
 
         if (w != null) {
             loggger.debug("sendKeys " + idName + " : " + value);
+            w.clear();
             w.sendKeys(value);
             loggger.debug("sentKeys "  + idName + " : " + value);
 

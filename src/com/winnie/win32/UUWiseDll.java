@@ -19,7 +19,7 @@ import java.security.NoSuchAlgorithmException;
  */
 public class UUWiseDll {
     public static String	USERNAME	= "hi51zz2";							//UU用户名
-    public static String	PASSWORD	= "hi51uuwise";							//UU密码
+    public static String	PASSWORD	= "hi51UUwise";							//UU密码
     public static String	DLLPATH		= "C:\\UUWiseHelper";					//DLL
     public static String	IMGPATH		= "c:\\test.jpg";
     public static int		SOFTID		= 95410;								//软件ID
