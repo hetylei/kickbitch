@@ -1760,4 +1760,194 @@ public class TBKJdbcDao implements TBKDao{
     //==============end of ShopProductRate==============
     
 
+
+    //==============PublicLog==============
+    String PublicLog_QUERY_SQL = "select * from PublicLog t ";
+
+    private String createPublicLogFilter(Map<String, Object> param) {
+        //to add filter,modify var filter
+        String filter = " where 1=1 ";
+        if (param.get("id") != null && !param.get("id").equals("")) {
+            filter += " and t.id = @id ";
+        }
+        if (param.get("taskId") != null && !param.get("taskId").equals("")) {
+            filter += " and t.taskId = @taskId ";
+        }
+        if (param.get("taskTime") != null && !param.get("taskTime").equals("")) {
+            filter += " and t.taskTime = @taskTime ";
+        }
+        if (param.get("taskKey") != null && !param.get("taskKey").equals("")) {
+            filter += " and t.taskKey = @taskKey ";
+        }
+        if (param.get("taskUrl") != null && !param.get("taskUrl").equals("")) {
+            filter += " and t.taskUrl = @taskUrl ";
+        }
+        if (param.get("pLog") != null && !param.get("pLog").equals("")) {
+            filter += " and t.pLog = @pLog ";
+        }
+
+        return filter;
+    }
+
+    private String createPublicLogOrderBy(String orderBy) {
+        if (orderBy != null && !orderBy.equals(""))
+            return " order by " + orderBy;
+        else return "";
+    }
+
+    public PublicLog insertPublicLog(PublicLog vo) {
+        dao.insert(vo);
+        return vo;
+    }
+
+    public int updatePublicLog(PublicLog vo) {
+        return dao.update(vo);
+    }
+
+    public int updatePublicLogIgnoreNull(PublicLog vo) {
+        return dao.updateIgnoreNull(vo);
+    }
+
+    public int deletePublicLog(PublicLog vo) {
+        return dao.delete(vo);
+    }
+
+    public int deletePublicLogByPrimaryKey(String id ) {
+        return dao.delete(PublicLog.class, id);
+    }
+
+    public int deletePublicLogByParam(Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i<param.length; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return deletePublicLogByParam(map);
+    }
+
+    public int deletePublicLogByParam(Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        String filter = createPublicLogFilter(param);
+        //don't delete when no filter
+        if (!filter.trim().toLowerCase().equals("where 1=1")) {
+            String sql = "delete from PublicLog " + filter.replace("t.", "");
+            Sql s = Sqls.create(sql);
+            s.params().putAll(param);
+            dao.execute(s);
+            return s.getUpdateCount();
+        }
+        return 0;
+    }
+
+    public PublicLog getPublicLogByPrimaryKey(String id ) {
+        String sql= PublicLog_QUERY_SQL + " where t.id = @id  ";
+        Sql s = Sqls.create(sql);
+
+        s.params().set("id", id);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(PublicLog.class));
+        dao.execute(s);
+        return s.getObject(PublicLog.class);
+    }
+
+    public int getPublicLogCountByPrimaryKey(String id ) {
+        String sql="select count(id) from PublicLog t where t.id = @id   ";
+        Sql s = Sqls.create(sql);
+
+        s.params().set("id", id);
+        s.setCallback(Sqls.callback.integer());
+        dao.execute(s);
+        return s.getInt();
+    }
+
+    public int getPublicLogCountByParam(Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i<param.length; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return getPublicLogCountByParam(map);
+    }
+
+    public int getPublicLogCountByParam(Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        //to add fileter modify createPublicLogFilter
+        String filter = createPublicLogFilter(param);
+        String sql = "select count(id) from PublicLog t " + filter;
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.integer());
+        dao.execute(s);
+        return s.getInt();
+    }
+
+    public List<PublicLog> getPublicLogListByParam(String orderBy, Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i < param.length ; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return getPublicLogListByParam(orderBy, map);
+    }
+
+    public List<PublicLog> getPublicLogListByParam(int page, int count, String orderBy, Object... param) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        for (int i = 0 ; i < param.length ; i += 2) {
+            map.put(param[i].toString(), param[i + 1]);
+        }
+
+        return getPublicLogListByParam(orderBy, map, page, count);
+    }
+
+    public List<PublicLog> getPublicLogListByParam(String orderBy, Map<String, Object> param) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        //to add filter modify createPublicLogFilter
+        String filter = createPublicLogFilter(param);
+        String sql = "select * from (" + PublicLog_QUERY_SQL + filter + ") dataall " + createPublicLogOrderBy(orderBy);
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(PublicLog.class));
+        dao.execute(s);
+        return s.getList(PublicLog.class);
+    }
+
+    public List<PublicLog> getPublicLogListByParam(String orderBy, Map<String, Object> param, int page, int count) {
+        if (param == null) {
+            param = new HashMap<String, Object>();
+        }
+        param.put("row0", (page - 1) * count);
+        param.put("row1", count);
+
+        //to add filter modify createPublicLogFilter
+        String filter = createPublicLogFilter(param);
+        String sql =  "select * from (" + PublicLog_QUERY_SQL + filter + ") dataall " + createPublicLogOrderBy(orderBy) + " limit @row0, @row1";
+
+        Sql s = Sqls.create(sql);
+        s.params().putAll(param);
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(PublicLog.class));
+        dao.execute(s);
+        return s.getList(PublicLog.class);
+
+
+    }
+
+    public List<PublicLog> getAllPublicLogList(String orderBy){
+	    String sql = PublicLog_QUERY_SQL;
+		Sql s = Sqls.create("select * from (" + sql + ") dataall " + createPublicLogOrderBy(orderBy));
+        s.setCallback(Sqls.callback.entities());
+        s.setEntity(dao.getEntity(PublicLog.class));
+        dao.execute(s);
+        return s.getList(PublicLog.class);
+    }
+    //==============end of PublicLog==============
+    
+
 }

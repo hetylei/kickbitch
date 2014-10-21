@@ -41,7 +41,7 @@ public class RestartWhenSuccessTimesBigThan implements Plugin {
 
             TaskLog l = new TaskLog();
             l.setTaskId(taskId);
-            l.setTaskLog("有效执行次数:" + BBSJob.currentSuccessTimes + "/" + VPNController.vpn.getCurrentArea() + "|" + BBSJob.log);
+            l.setTaskLog("有效执行次数:" + BBSJob.currentSuccessTimes + "|" + BBSJob.log);
             l.setTaskTime(Calendar.getInstance().getTime());
             IocFactory.getTBKDao().insertTaskLog(l);
 

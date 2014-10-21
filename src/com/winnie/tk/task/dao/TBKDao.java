@@ -233,4 +233,29 @@ public interface TBKDao {
     //==============end of ShopProductRate==============	
 
 
+
+    //==============PublicLog==============
+    public PublicLog insertPublicLog(PublicLog vo);
+    public int updatePublicLog(PublicLog vo);
+    public int updatePublicLogIgnoreNull(PublicLog vo);
+
+    public int deletePublicLog(PublicLog vo);
+    public int deletePublicLogByPrimaryKey(String id );
+    public int deletePublicLogByParam(Object... param);
+    public int deletePublicLogByParam(Map<String, Object> param);
+
+    public PublicLog getPublicLogByPrimaryKey(String id );
+    
+    public int getPublicLogCountByPrimaryKey(String id );
+    public int getPublicLogCountByParam(Object... param);
+    public int getPublicLogCountByParam(Map<String, Object> param);
+
+    public List<PublicLog> getPublicLogListByParam(String orderBy, Object... param);
+    public List<PublicLog> getPublicLogListByParam(int page, int count, String orderBy, Object... param);
+    public List<PublicLog> getPublicLogListByParam(String orderBy, Map<String, Object> param);
+    public List<PublicLog> getPublicLogListByParam(String orderBy, Map<String, Object> param, int page, int count);
+    public List<PublicLog> getAllPublicLogList(String orderBy);
+    //==============end of PublicLog==============	
+
+
 }

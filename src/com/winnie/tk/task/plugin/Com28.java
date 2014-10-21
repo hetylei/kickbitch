@@ -13,6 +13,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitWebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class Com28 implements Plugin {
     /**
      *
      * @param b
-     * @param params 共4个参数 姓名 手机号 地址 留言
+     * @param params 共5个参数 姓名 手机号 地址 留言 排序
      */
     @Override
     public void execute(Browser b, String[] params) {
@@ -37,11 +38,20 @@ public class Com28 implements Plugin {
         String shouji = params[1];
         String dizhi = params[2];
         String liuyan = params[3];
+        String sort = "asc"; //asc正序 desc倒序 random随机
+        if (params.length>4) sort = params[4];
 
         //获取所有符合规则的链接
         String s = b.open("http://www.28.com");
         if (s != null) {
             List<WebElement> elementList= b.getDriver().findElements(By.xpath("//a[contains(@href,'bannerID=')]"));
+           
+            if (sort.equals("desc")) {
+                Collections.reverse(elementList);
+            } else if (sort.equals("random")) {
+                Collections.shuffle(elementList);
+            }
+
             //开始点击链接
             for (WebElement e : elementList)  {
                 try {

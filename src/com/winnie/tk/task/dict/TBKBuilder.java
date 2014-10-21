@@ -41,6 +41,17 @@ public class TBKBuilder implements IBuilder {
                 .primarykey(new PrimaryKey("id"))
         ;
 
+        Database.instance().table("PublicLog").remark("执行日志")
+                .column(new Column("id").remark("主键").type(DataType.Int))
+                .column(new Column("taskId").remark("任务").type(DataType.Int))
+                .column(new Column("taskTime").remark("启动时间").type(DataType.DateTime))
+                .column(new Column("taskKey").remark("任务关键词").type(DataType.Varchar).len(2000))
+                .column(new Column("taskUrl").remark("任务url").type(DataType.Varchar).len(2000))
+                .column(new Column("pLog").remark("任务日志").type(DataType.Varchar).len(2000))
+
+                .primarykey(new PrimaryKey("id"))
+        ;
+
         Database.instance().table("HotKeys").remark("关键词")
                 .column(new Column("id").remark("主键").type(DataType.Int))
                 //上升、热门
@@ -155,15 +166,18 @@ public class TBKBuilder implements IBuilder {
         //调用builder初始化
         new TBKBuilder().define();
         //获得表实例
-        Table t1 = Database.instance().getTable("Shop");
+        Table t1 = Database.instance().getTable("PublicLog");
         //输出建表语句
         System.out.println(t1.getCreateMysqlDDL());
 
         //使用脚手架创建 vo,dao 及相关配置
         CodeCreator.createJdbcDaoConfig(DBType.MySQL, t1, "com.winnie.tk.task", "TBK");
+
+        /*
         Table t2 = Database.instance().getTable("ShopProduct");
         //输出建表语句
         System.out.println(t2.getCreateMysqlDDL());
+
 
         //使用脚手架创建 vo,dao 及相关配置
         CodeCreator.createJdbcDaoConfig(DBType.MySQL, t2, "com.winnie.tk.task", "TBK");
@@ -187,6 +201,7 @@ public class TBKBuilder implements IBuilder {
         CodeCreator.createJdbcDaoConfig(DBType.MySQL, t5, "com.winnie.tk.task", "TBK");
         //使用脚手架创建freemarker页面及eho
         //CodeCreator.createFreeMarkerEntityEditor(t1, "com.winnie.test", null);
+        */
     }
 
 
