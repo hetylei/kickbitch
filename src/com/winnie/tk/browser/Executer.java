@@ -11,7 +11,8 @@ import java.util.List;
  * User: chenlei
  * Date: 12-9-16
  * Time: ÏÂÎç12:17
- * To change this template use File | Settings | File Templates.
+ * ÃüÁî¼¯
+ *
  */
 public class Executer {
     public static Logger logger = Logger.getLogger(Executer.class);
@@ -75,6 +76,13 @@ public class Executer {
             browser.waitForValue(command.substring(13, command.indexOf(" ", 13)), command.substring(command.indexOf(" ", 13) + 1));
         } else if (command.startsWith("waitforsecond ")) {
             browser.waitForSecond(Integer.parseInt(command.substring(14)));
+        } else if (command.startsWith("execnoex ")) {
+            try
+            {
+                runLine(browser,  command.substring(9));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         } else if (command.startsWith("plugin ")) {
             String plugin = command.substring(7, command.indexOf(" ", 7));
             String[] params = command.substring(7+1+plugin.length()).split(" ");
@@ -82,9 +90,9 @@ public class Executer {
             browser.plugin(plugin, params);
         } else if (command.startsWith("vpnclose")) {
             VPNController.vpn.vpnClose();
-        }  else if (command.startsWith("vpn ")) {
+        } else if (command.startsWith("vpn ")) {
             VPNController.vpn(command.substring(4));
-        }  else if (command.startsWith("close")) {
+        } else if (command.startsWith("close")) {
             if (Executer.browser != null) Executer.browser.close();
         } else {
             throw new Exception("unknown command : " + command);
