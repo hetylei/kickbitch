@@ -13,6 +13,7 @@ import com.winnie.win32.WindowsDll;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -37,6 +38,8 @@ public class VPN91 implements VPN {
     public static WinDef.HWND state;
 
     public static Logger logger = Logger.getLogger(VPNController.class);
+    
+    public static int vpnloadtimeout = Integer.parseInt(Config.pu.getValue("vpnloadtimeout"));
 
 
     public void initVPN() {
@@ -57,7 +60,8 @@ public class VPN91 implements VPN {
                 try {
                     Thread.sleep(1000);
                     i++;
-                    if (i>20) {
+                    if (i > vpnloadtimeout) {
+                        logger.info("等待登录窗口超时，重新初始化...");
                         initVPN();
                         return;
                     }
@@ -71,6 +75,7 @@ public class VPN91 implements VPN {
         }
 
         //登录
+        logger.debug("找到登录窗口, 准备登录...");
         main = WindowsDll.CallUser32.INSTANCE.FindWindow(null , Config.pu.getValue("91vpn"));
         if (main != null) {
             login = null;
@@ -81,6 +86,7 @@ public class VPN91 implements VPN {
                     char[] lpWindowText = new char[255];
                     WindowsDll.CallUser32.INSTANCE.GetClassName(hwnd, lpClassName, 254);
                     WindowsDll.CallUser32.INSTANCE.GetWindowText(hwnd, lpWindowText, 254);
+                    logger.debug("枚举到 - " + Arrays.toString(lpWindowText));
                     if (new String(lpWindowText).trim().equals("登录") && new String(lpClassName).trim().equals("Button") ) {
                         if (login == null ) {
                             //这里有个BUG 登录窗口有两个叫登录的BUTTON，第一个是真的
@@ -94,6 +100,7 @@ public class VPN91 implements VPN {
             }, null);
             if (login != null) {
                 WindowsDll.CallUser32.INSTANCE.SendMessageA(login, WindowsDll.BM_CLICK, null, null);
+                //todo:有链接不上的提示框
                 logger.info("点击【登录】按钮 - " + Config.pu.getValue("91vpn"));
             } else {
                 logger.info("未能找到【登录】按钮 - " + Config.pu.getValue("91vpn"));
@@ -282,6 +289,7 @@ public class VPN91 implements VPN {
     }
 
     public void kill() {
+        logger.info("代理 - " + Config.pu.getValue("91vpn") + " 准备杀死进程");
         WindowsDll.killProcessByExe("91vpn.exe");
         logger.info("代理 - " + Config.pu.getValue("91vpn") + " 已经杀死进程");
     }

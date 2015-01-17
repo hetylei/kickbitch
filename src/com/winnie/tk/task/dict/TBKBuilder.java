@@ -37,6 +37,7 @@ public class TBKBuilder implements IBuilder {
                 .column(new Column("taskId").remark("任务").type(DataType.Int))
                 .column(new Column("taskTime").remark("启动时间").type(DataType.DateTime))
                 .column(new Column("taskLog").remark("日志").type(DataType.Varchar).len(2000))
+                .column(new Column("p4pid").remark("p4pid").type(DataType.Int))
 
                 .primarykey(new PrimaryKey("id"))
         ;
@@ -69,6 +70,12 @@ public class TBKBuilder implements IBuilder {
                 .column(new Column("id").remark("主键").type(DataType.Int))
                 //直通车主图关键词 空格分隔
                 .column(new Column("p4pids").remark("直通车主图关键词").type(DataType.Varchar).len(2000))
+                .column(new Column("catalog").remark("产品或关键词").type(DataType.Varchar).len(2000))
+                .column(new Column("itemId").remark("宝贝id").type(DataType.Varchar).len(2000))
+                .column(new Column("shopId").remark("店铺id").type(DataType.Varchar).len(2000))
+                .column(new Column("itemName").remark("宝贝名称").type(DataType.Varchar).len(2000))
+                .column(new Column("shopName").remark("店铺名称").type(DataType.Varchar).len(2000))
+                .column(new Column("isUse").remark("是否启用").type(DataType.Int))
 
                 .primarykey(new PrimaryKey("id"))
         ;

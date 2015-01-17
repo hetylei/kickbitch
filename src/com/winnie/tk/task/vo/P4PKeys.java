@@ -17,6 +17,20 @@ public class P4PKeys implements Serializable{
     /**直通车主图关键词*/
     @Column
     private String p4pids;
+    @Column
+    private String catalog;
+    @Column
+    private String itemId;
+    @Column
+    private String shopId;
+    @Column
+    private String shopName;
+    @Column
+    private String itemName;
+    @Column
+    private int isUse;
+
+
 
 
     public int getId(){
@@ -33,5 +47,51 @@ public class P4PKeys implements Serializable{
         this.p4pids = value;
     }
 
+    public String getCatalog() {
+        return catalog;
+    }
 
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
+    }
+
+    public String getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(String itemId) {
+        this.itemId = itemId;
+    }
+
+    public String getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(String shopId) {
+        this.shopId = shopId;
+    }
+
+    public String getShopName() {
+        return shopName;
+    }
+
+    public void setShopName(String shopName) {
+        this.shopName = shopName;
+    }
+
+    public String getItemName() {
+        return itemName;
+    }
+
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public int getIsUse() {
+        return isUse;
+    }
+
+    public void setIsUse(int use) {
+        isUse = use;
+    }
 }

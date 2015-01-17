@@ -23,6 +23,9 @@ public class TaskLog implements Serializable{
     /**»’÷æ*/
     @Column
     private String taskLog;
+    /**p4pid*/
+    @Column
+    private String p4pid;
 
 
     public int getId(){
@@ -53,5 +56,11 @@ public class TaskLog implements Serializable{
         this.taskLog = value;
     }
 
+    public String getP4pid() {
+        return p4pid;
+    }
 
+    public void setP4pid(String p4pid) {
+        this.p4pid = p4pid;
+    }
 }

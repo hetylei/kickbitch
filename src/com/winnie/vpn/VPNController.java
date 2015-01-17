@@ -44,13 +44,21 @@ public class VPNController {
     
     public static void excuteCommand(String command) {
         if (command!=null) {
-            if (command.toLowerCase().equals("next")) {
-                vpn.next();
-            } else if (command.toLowerCase().equals("nextcity")) {
-                vpn.nextcity();
-            }  else if (command.toLowerCase().startsWith("nextmatch")) {
-                vpn.nextmatch(command.substring(9).trim());
+            try {
+                if (command.toLowerCase().equals("next")) {
+                    vpn.next();
+                } else if (command.toLowerCase().equals("nextcity")) {
+                    vpn.nextcity();
+                }  else if (command.toLowerCase().startsWith("nextmatch")) {
+                    vpn.nextmatch(command.substring(9).trim());
+                }
+            } catch (Exception ex) {
+                //可能出错死循环
+                logger.info("切换代理地址出错，重新初始化理...");
+                vpn.initVPN();
+                excuteCommand(command);
             }
+
 
         }
     }

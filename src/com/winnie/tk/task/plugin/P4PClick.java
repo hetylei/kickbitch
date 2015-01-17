@@ -7,10 +7,15 @@ import com.winnie.tk.browser.Browser;
 import com.winnie.tk.browser.Plugin;
 import com.winnie.tk.task.dao.TBKDao;
 import com.winnie.tk.task.vo.P4PKeys;
+import com.winnie.tk.task.vo.TaskLog;
+import com.winnie.vpn.VPNController;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,17 +32,36 @@ public class P4PClick implements Plugin {
             TBKDao dao = IocFactory.getTBKDao();
             P4PKeys p = dao.getP4PKeysByPrimaryKey(params[0].substring(2));
             run(b, p.getP4pids().split(" "));
+        }  else if (params.length == 1 && params[0].startsWith("catalog")) {
+            TBKDao dao = IocFactory.getTBKDao();
+            List<P4PKeys> list = dao.getP4PKeysListByParam("", "catalog", params[0].substring(7));
+            run(b, list);
         }  else {
             run(b, params);
         }
     }
 
-    private void run(Browser b, String[] params) {
+    private boolean run(Browser b, String[] params) {
         ClickBy clickBy = new ClickBy();
+        boolean bl = false;
         for (String id : params) {
-            clickBy.execute(b, (Config.pu.getValue("p4pleft")+" img[src*='" + id + "']").split("bitch"));
-            clickBy.execute(b, (Config.pu.getValue("p4pbottom")+" img[src*='" + id + "']").split("bitch"));
-            clickBy.execute(b, (Config.pu.getValue("p4pshop")+" img[src*='" + id + "']").split("bitch"));
+            bl = bl || clickBy.run(b, (Config.pu.getValue("p4pleft")+" img[src*='" + id + "']"));
+            bl = bl || clickBy.run(b, (Config.pu.getValue("p4pbottom")+" img[src*='" + id + "']"));
+            bl = bl || clickBy.run(b, (Config.pu.getValue("p4pshop")+" img[src*='" + id + "']"));
+        }
+        return bl;
+    }
+
+    private void run(Browser b, List<P4PKeys> list) {
+        for (P4PKeys p4p : list) {
+            boolean bl = run(b, p4p.getP4pids().split(" "));
+            if (bl) {
+                TaskLog l = new TaskLog();
+                l.setTaskTime(Calendar.getInstance().getTime());
+                l.setTaskLog(VPNController.vpn.getCurrentArea());
+                l.setP4pid(String.valueOf(p4p.getId()));
+                P4PClickLog.log(l);
+            }
         }
     }
 }

@@ -42,6 +42,9 @@ public class TBKJdbcDao implements TBKDao{
         if (param.get("taskLog") != null && !param.get("taskLog").equals("")) {
             filter += " and t.taskLog = @taskLog ";
         }
+        if (param.get("p4pid") != null && !param.get("p4pid").equals("")) {
+            filter += " and t.p4pid = @p4pid ";
+        }
 
         return filter;
     }
@@ -608,6 +611,24 @@ public class TBKJdbcDao implements TBKDao{
         }
         if (param.get("p4pids") != null && !param.get("p4pids").equals("")) {
             filter += " and t.p4pids = @p4pids ";
+        }
+        if (param.get("catalog") != null && !param.get("catalog").equals("")) {
+            filter += " and t.catalog = @catalog ";
+        }
+        if (param.get("itemId") != null && !param.get("itemId").equals("")) {
+            filter += " and t.itemId = @itemId ";
+        }
+        if (param.get("shopId") != null && !param.get("shopId").equals("")) {
+            filter += " and t.shopId = @shopId ";
+        }
+        if (param.get("itemName") != null && !param.get("itemName").equals("")) {
+            filter += " and t.itemName = @itemName ";
+        }
+        if (param.get("shopName") != null && !param.get("shopName").equals("")) {
+            filter += " and t.shopName = @shopName ";
+        }
+        if (param.get("isUse") != null && !param.get("isUse").equals("")) {
+            filter += " and t.isUse = @isUse ";
         }
 
         return filter;
