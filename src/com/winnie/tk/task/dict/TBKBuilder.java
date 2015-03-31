@@ -66,6 +66,31 @@ public class TBKBuilder implements IBuilder {
                 .primarykey(new PrimaryKey("id"))
         ;
 
+        Database.instance().table("P4PWords").remark("直通车监控词")
+                .column(new Column("id").remark("主键").type(DataType.Int))
+                        //直通车主图关键词 空格分隔
+                .column(new Column("catalog").remark("产品分类").type(DataType.Varchar).len(2000))
+                .column(new Column("p4pword").remark("关键词").type(DataType.Varchar).len(2000))
+                .column(new Column("isUse").remark("是否启用").type(DataType.Int))
+
+                .primarykey(new PrimaryKey("id"))
+        ;
+
+        Database.instance().table("P4PWordRankings").remark("直通车监控词排行榜")
+                .column(new Column("id").remark("主键").type(DataType.Int))
+                        //直通车主图关键词 空格分隔
+                .column(new Column("p4pword").remark("直通车监控词").type(DataType.Int))
+                .column(new Column("rank").remark("当前排名").type(DataType.Varchar).len(2000))
+                .column(new Column("url").remark("图片地址").type(DataType.Varchar).len(2000))
+                .column(new Column("title").remark("标题").type(DataType.Varchar).len(2000))
+                .column(new Column("p4ptime").remark("记录时间").type(DataType.Varchar).len(2000))
+                .column(new Column("p4parea").remark("记录时的搜索IP所在地").type(DataType.Varchar).len(2000))
+                .column(new Column("p4pkey").remark("特征码").type(DataType.Varchar).len(2000))
+
+                .primarykey(new PrimaryKey("id"))
+        ;
+
+
         Database.instance().table("P4PKeys").remark("直通车主图关键词")
                 .column(new Column("id").remark("主键").type(DataType.Int))
                 //直通车主图关键词 空格分隔

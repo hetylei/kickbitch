@@ -58,7 +58,7 @@ public class P4PClick implements Plugin {
             if (bl) {
                 TaskLog l = new TaskLog();
                 l.setTaskTime(Calendar.getInstance().getTime());
-                l.setTaskLog(VPNController.vpn.getCurrentArea());
+                l.setTaskLog(VPNController.vpn.getCurrentArea() + b.getDriver().getTitle());
                 l.setP4pid(String.valueOf(p4p.getId()));
                 P4PClickLog.log(l);
             }
